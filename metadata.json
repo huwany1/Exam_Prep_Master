@@ -1,0 +1,5 @@
+{
+  "name": "OS Master Quiz",
+  "description": "A comprehensive Operating Systems interactive quiz and study guide covering processes, scheduling, deadlocks, memory management, and file systems.",
+  "requestFramePermissions": []
+}
