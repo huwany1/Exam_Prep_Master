@@ -460,169 +460,230 @@ export const questions: Question[] = [
     id: 41,
     text: "写回法是什么？采用写回法会产生什么问题？",
     type: QuestionType.ESSAY,
-    explanation: "写回法（Write-Back）是一种缓存更新策略，即在写操作时，数据首先被写入缓存，而不是立即写入主存。这可能造成cache中的数据副本与主存中数据不一致。"
+    explanation: `<p>写回法（Write-Back）是一种缓存更新策略，即在写操作时，数据首先被写入缓存，而不是立即写入主存。这意味着在写操作后，修改的数据并没有立即传输到主存中，而是留在缓存中，只有当该数据被替换出缓存或者发生读操作时才会将数据写回主存。</p>
+    <p>优点：写回法可以提高CPU与主存之间的存取速度，降低IO操作频率，优化系统性能。</p>
+    <p>缺点：可能造成cache中的数据副本与贮存中数据不一致。数据不一致可能导致程序结果不正确，甚至数据丢失。</p>`
   },
   {
     id: 42,
     text: "什么叫指令？什么叫指令系统？",
     type: QuestionType.ESSAY,
-    explanation: "指令是指控制计算机执行某种操作的命令。一台计算机中所有指令的集合称为该计算机的指令系统。"
+    explanation: `<p>指令是指控制计算机执行某种操作（如加、减、传送、转移等操作）的命令，它是CPU能直接识别并执行的基本功能单位。</p>
+    <p>一台计算机中所有指令的集合称为该计算机的指令系统。</p>`
   },
   {
     id: 43,
-    text: "简述易失性存储器与非易失性存储器",
+    text: "存储器",
     type: QuestionType.ESSAY,
-    explanation: "易失性：断电丢失（SRAM, DRAM）。非易失性：断电不丢失（ROM, Flash）。"
+    explanation: `<ul>
+      <li><strong>易失性存储器：</strong>断电后所保存的信息会丢失的存储器，常见的如SRAM、DRAM</li>
+      <li><strong>非易失性存储器：</strong>断电后所保存的信息不会丢失的存储器，如ROM、闪存、磁盘、光盘</li>
+    </ul>`
   },
   {
     id: 44,
-    text: "补码 10110100 的真值是多少？",
+    text: "补码与真值的转换",
     type: QuestionType.ESSAY,
-    explanation: "-(1001011 + 1) -> -1001100 -> -76"
+    explanation: `<ul>
+      <li><strong>补码：</strong>10110100</li>
+      <li><strong>真值：</strong>-76</li>
+    </ul>
+    <p>解析：符号位1为负。数值位 0110100 取反 1001011 加 1 -> 1001100 (76)。故为 -76。</p>`
   },
   {
     id: 45,
-    text: "简述常见的操作数寻址方式",
+    text: "操作数寻址方式",
     type: QuestionType.ESSAY,
-    explanation: "直接寻址、立即寻址、寄存器寻址、间接寻址、寄存器间接寻址等。"
+    explanation: `<ul>
+      <li><strong>直接寻址：</strong>形式地址即操作数地址</li>
+      <li><strong>立即寻址：</strong>形式地址即操作数</li>
+      <li><strong>寄存器寻址：</strong>形式地址即操作数的寄存器编号</li>
+      <li><strong>间接寻址：</strong>形式地址即操作数地址的地址</li>
+      <li><strong>寄存器间接寻址：</strong>形式地址为操作数地址对应的寄存器编号</li>
+    </ul>`
   },
   {
     id: 46,
-    text: "cache的地址映射方式有哪些？",
+    text: "cache的地址映射方式",
     type: QuestionType.ESSAY,
-    explanation: "直接相联映射、全相联映射、组相联映射。"
+    explanation: `<ul>
+      <li><strong>直接相联映射：</strong>各主存块只能映射到cache中的固定块。冲突率最高</li>
+      <li><strong>全相联映射：</strong>各主存块可以映射到cache中的任意数据块。替换算法最复杂</li>
+      <li><strong>组相联映射：</strong>各主存块只能映射到cache固定组中的任意块。</li>
+    </ul>`
   },
   {
     id: 47,
-    text: "列举常见的输入输出设备",
+    text: "常见的输入输出设备",
     type: QuestionType.ESSAY,
-    explanation: "输入：鼠标、键盘。输出：打印机、显示器。"
+    explanation: `<ul>
+      <li><strong>输入设备：</strong>鼠标、键盘、扫描仪和模/数转换器</li>
+      <li><strong>输出设备：</strong>打印机、显示器、数/模转换器</li>
+    </ul>`
   },
   {
     id: 48,
-    text: "IEEE754浮点数的表示格式",
+    text: "IEEE754浮点数的表示",
     type: QuestionType.ESSAY,
-    explanation: "1.M × 2^e。尾数原码，阶码移码，符号位。"
+    explanation: `<p>表示格式：1.M × 2<sup>e</sup></p>
+    <ul>
+      <li>尾数 1.M 用原码小数表示</li>
+      <li>阶码 E 用移码表示，E = e + 127</li>
+      <li>符号位 0 表示正数，1表示负数</li>
+    </ul>`
   },
   {
     id: 49,
-    text: "什么是正溢出和负溢出？",
+    text: "溢出标志",
     type: QuestionType.ESSAY,
-    explanation: "正溢出：两正数相加结果为负。负溢出：两负数相加结果为正。"
+    explanation: `<ul>
+      <li><strong>正溢出：</strong>两正数相加结果为负</li>
+      <li><strong>负溢出：</strong>两负数相加结果为正</li>
+    </ul>`
   },
   {
     id: 50,
-    text: "简述写策略中的写回法和写穿法",
+    text: "写策略",
     type: QuestionType.ESSAY,
-    explanation: "写回法：只更新Cache，适时回写主存。写穿法：同时更新Cache和主存。"
+    explanation: `<ul>
+      <li><strong>写回法：</strong>写操作更新cache即报告写完成</li>
+      <li><strong>写穿法：</strong>写操作同时更新Cache和主存才报告写完成</li>
+    </ul>`
   },
   {
     id: 51,
-    text: "指令系统的指令功能条数如何计算？",
+    text: "指令系统的指令功能条数",
     type: QuestionType.ESSAY,
-    explanation: "2^m，其中m为操作码位数。"
+    explanation: `<p>指令功能条数 = 2<sup>m</sup>，其中 m 为操作码的位数</p>`
   },
   {
     id: 52,
     text: "cache的作用",
     type: QuestionType.ESSAY,
-    explanation: "缓解CPU与主存速度不匹配的问题，利用局部性原理提高访问速度。"
+    explanation: `<p>缓存的核心作用是通过在高速CPU与低速组件主存之间建立一个临时数据层，存储最可能被访问的数据，以空间换时间，从而显著提升系统整体性能、降低延迟并减少后端压力，提升CPU访问数据速度。</p>`
   },
   {
     id: 53,
-    text: "冯诺依曼体系结构的核心思想",
+    text: "冯诺依曼体系结构",
     type: QuestionType.ESSAY,
-    explanation: "存储程序：将程序和数据以二进制形式存放在存储器中，自动执行。"
+    explanation: `<p><strong>存储程序：</strong>将解题的步骤编制成程序，然后将程序和运行程序所需要的数据以二进制的形式存放在存储器中。</p>`
   },
   {
     id: 54,
-    text: "GB2312编码特点",
+    text: "GB2312编码（国标码）",
     type: QuestionType.ESSAY,
-    explanation: "双字节，最高位MSB均为1。"
+    explanation: `<p>汉字编码采用双字节编码（16位），且每个字节的最高位 MSB 均为1。</p>`
   },
   {
     id: 55,
-    text: "奇偶校验的原理",
+    text: "奇偶校验",
     type: QuestionType.ESSAY,
-    explanation: "通过增加校验位使1的个数为奇数或偶数。"
+    explanation: `<ul>
+      <li><strong>奇校验：</strong>原始数据和校验码中1的总个数为奇数</li>
+      <li><strong>偶校验：</strong>原始数据和校验码中1的总个数为偶数</li>
+    </ul>`
   },
   {
     id: 56,
-    text: "大端方式和小端方式的区别",
+    text: "大端和小端方式",
     type: QuestionType.ESSAY,
-    explanation: "大端：高字节存低地址。小端：低字节存低地址。"
+    explanation: `<ul>
+      <li><strong>大端方式：</strong>存储器的低字节地址单元中存放的是数据的最高字节</li>
+      <li><strong>小端方式：</strong>存储器的低字节地址单元中存放的是数据的最低字节</li>
+    </ul>`
   },
   {
     id: 57,
-    text: "海明码校验位的位置",
+    text: "海明码的校验位位置",
     type: QuestionType.ESSAY,
-    explanation: "2^0, 2^1, 2^2... 位置。"
+    explanation: `<p>海明码的校验位插入到信息位中对应的 2<sup>0</sup>、2<sup>1</sup>、2<sup>2</sup>、2<sup>3</sup> 等固定位置。</p>`
   },
   {
     id: 58,
-    text: "DRAM刷新特点",
+    text: "DRAM的刷新",
     type: QuestionType.ESSAY,
-    explanation: "按行进行。"
+    explanation: `<p>DRAM的刷新按行进行，可以减少存储矩阵的行数，增加列数从而减少刷新周期。</p>`
   },
   {
     id: 59,
-    text: "CISC和RISC的区别",
+    text: "CISC和RISC",
     type: QuestionType.ESSAY,
-    explanation: "CISC：复杂指令集。RISC：精简指令集。"
+    explanation: `<ul>
+      <li><strong>CISC（复杂指令集）：</strong>追求用最少的指令完成复杂任务，指令系统庞大而复杂</li>
+      <li><strong>RISC（精简指令集）：</strong>追求用简单高效的指令快速执行，指令系统精简且规整</li>
+    </ul>`
   },
   {
     id: 60,
-    text: "程序计数器PC的作用",
+    text: "程序计数器PC",
     type: QuestionType.ESSAY,
-    explanation: "保存下一条指令的地址。"
+    explanation: `<p>CPU 使用程序计数器 PC 保存指令地址，每执行一条指令，通过 PC+1 计算出下一条指令地址。取值过程中 PC 的值会修改，计算操作数的有效地址则在指令译码分析或执行阶段完成，也就是 PC 的值为下一条要执行指令的地址值。</p>`
   },
   {
     id: 61,
-    text: "什么是相联存储器？",
+    text: "相联存储器",
     type: QuestionType.ESSAY,
-    explanation: "按内容进行访问的存储器。"
+    explanation: `<p>按内容进行访问的存储器。</p>`
   },
   {
     id: 62,
-    text: "简述高位多体交叉和低位多体交叉",
+    text: "多体交叉存储器",
     type: QuestionType.ESSAY,
-    explanation: "高位：容量扩展。低位：提升带宽（流水线访问）。"
+    explanation: `<ul>
+      <li><strong>高位多体交叉：</strong>目的是扩充存储器的容量，与存储器字扩展完全相同</li>
+      <li><strong>低位多体交叉：</strong>各模块按照流水线的方式轮流存取，提高顺序访问时各模块的并行性，增加访问速度</li>
+    </ul>`
   },
   {
     id: 63,
-    text: "补码乘法的特点",
+    text: "补码乘法",
     type: QuestionType.ESSAY,
-    explanation: "符号位参与运算。"
+    explanation: `<p>符号位跟数值位一起运算。</p>`
   },
   {
     id: 64,
-    text: "原码和补码中0的表示",
+    text: "原码和反码的0的表示",
     type: QuestionType.ESSAY,
-    explanation: "原码0有两种（+0, -0），补码0只有一种。"
+    explanation: `<p>0的表示均有两种（+0 和 -0）。</p>`
   },
   {
     id: 65,
-    text: "系统总线的分类",
+    text: "系统互连",
     type: QuestionType.ESSAY,
-    explanation: "数据总线、地址总线、控制总线。"
+    explanation: `<ul>
+      <li>CPU连接计算机中各主要部件的总线称为系统总线。</li>
+      <li>总线是连接两个或多个设备的公共信息通路，主要有数据总线、地址总线和控制总线。</li>
+    </ul>`
   },
   {
     id: 66,
-    text: "奇偶校验的局限性",
+    text: "奇偶校验（优缺点）",
     type: QuestionType.ESSAY,
-    explanation: "只能检测奇数位错误。"
+    explanation: `<ul>
+      <li><strong>编码规则：</strong>在数据位后增加一位校验位，使校验码中1的个数为奇数或偶数</li>
+      <li><strong>局限性：</strong>只能检测出奇数个位出错的情况，不能检测偶数个位出错</li>
+    </ul>`
   },
   {
     id: 67,
-    text: "指令格式包含哪些基本信息？",
+    text: "指令格式",
     type: QuestionType.ESSAY,
-    explanation: "操作码（做什么）和地址码（对谁做）。"
+    explanation: `<ul>
+      <li>用二进制代码表示指令的结构形式</li>
+      <li>指令要求计算机处理什么操作数？</li>
+      <li>指令要求计算机对操作数做什么操作？</li>
+      <li>计算机怎样才能得到操作数？</li>
+    </ul>`
   },
   {
     id: 68,
-    text: "列举指令寻址方式和操作数寻址方式",
+    text: "指令寻址方式",
     type: QuestionType.ESSAY,
-    explanation: "指令寻址：顺序、跳跃。操作数寻址：立即、直接、间接、寄存器、相对、基址、变址等。"
+    explanation: `<p>寻找指令或操作数有效地址的方式。</p>
+    <ul>
+      <li><strong>指令寻址方式：</strong>顺序寻址、跳跃寻址</li>
+      <li><strong>操作数寻址方式：</strong>立即寻址、直接寻址、间接寻址、寄存器寻址、寄存器间接寻址、相对寻址、基址\变址寻址、复合寻址</li>
+    </ul>`
   }
 ];
 
