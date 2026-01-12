@@ -3,7 +3,7 @@ import { questions } from './data';
 import { QuestionCard } from './components/QuestionCard';
 import { PomodoroTimer, PomodoroTimerRef } from './components/PomodoroTimer';
 import { QuestionType, UserAnswers } from './types';
-import { Terminal, BookOpen, Layers, Search, Code2, Star, FileText, SlidersHorizontal, ChevronUp, ChevronDown, Shuffle, BookMarked, RotateCcw, AlertCircle, ArrowUp, Timer } from 'lucide-react';
+import { Terminal, BookOpen, Layers, Search, Code2, Star, FileText, SlidersHorizontal, ChevronUp, ChevronDown, Shuffle, BookMarked, RotateCcw, AlertCircle, ArrowUp, Timer, PenLine } from 'lucide-react';
 
 // Fisher-Yates shuffle algorithm
 function shuffleArray<T>(array: T[]): T[] {
@@ -279,16 +279,22 @@ const App: React.FC = () => {
                  <div className="w-4 h-4 mr-2 border border-current rounded flex items-center justify-center text-[10px]">T</div> 判断题
                </button>
                <button
-                  onClick={() => setFilter(QuestionType.COMPLEX)}
-                  className={`flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${filter === QuestionType.COMPLEX ? 'bg-indigo-100 text-indigo-700 shadow-sm' : 'text-slate-600 hover:bg-slate-50'}`}
+                  onClick={() => setFilter(QuestionType.FILL_IN_THE_BLANK)}
+                  className={`flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${filter === QuestionType.FILL_IN_THE_BLANK ? 'bg-indigo-100 text-indigo-700 shadow-sm' : 'text-slate-600 hover:bg-slate-50'}`}
                >
-                 <Code2 className="w-4 h-4 mr-2" /> 计算题
+                 <PenLine className="w-4 h-4 mr-2" /> 填空题
                </button>
                <button
                   onClick={() => setFilter(QuestionType.ESSAY)}
                   className={`flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${filter === QuestionType.ESSAY ? 'bg-indigo-100 text-indigo-700 shadow-sm' : 'text-slate-600 hover:bg-slate-50'}`}
                >
                  <FileText className="w-4 h-4 mr-2" /> 简答题
+               </button>
+               <button
+                  onClick={() => setFilter(QuestionType.COMPLEX)}
+                  className={`flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${filter === QuestionType.COMPLEX ? 'bg-indigo-100 text-indigo-700 shadow-sm' : 'text-slate-600 hover:bg-slate-50'}`}
+               >
+                 <Code2 className="w-4 h-4 mr-2" /> 计算题
                </button>
                <div className="w-px bg-slate-200 mx-1"></div>
                <button

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Question, QuestionType } from '../types';
-import { CheckCircle2, XCircle, HelpCircle, Eye, ChevronUp, Star, FileText } from 'lucide-react';
+import { CheckCircle2, XCircle, HelpCircle, Eye, ChevronUp, Star, FileText, PenLine } from 'lucide-react';
 
 interface QuestionCardProps {
   question: Question;
@@ -27,13 +27,13 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   const isExplanationVisible = isStudyMode || showExplanation;
 
     const handleSelect = (optionKey: string) => {
-    if (isAnswered && question.type !== QuestionType.COMPLEX && question.type !== QuestionType.ESSAY) return;
+    if (isAnswered && question.type !== QuestionType.COMPLEX && question.type !== QuestionType.ESSAY && question.type !== QuestionType.FILL_IN_THE_BLANK) return;
     
     onSelectAnswer(optionKey);
     
     // Auto show explanation if wrong or for complex types (unless it's a choice question disguised as complex)
     const isChoiceQuestion = question.options && question.options.length > 0;
-    if ((question.type === QuestionType.COMPLEX && !isChoiceQuestion) || question.type === QuestionType.ESSAY || optionKey !== question.correctAnswer) {
+    if ((question.type === QuestionType.COMPLEX && !isChoiceQuestion) || question.type === QuestionType.ESSAY || question.type === QuestionType.FILL_IN_THE_BLANK || optionKey !== question.correctAnswer) {
       setShowExplanation(true);
     }
   };
@@ -139,7 +139,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   );
 
   const renderEssayButton = () => (
-    !isStudyMode && (question.type === QuestionType.COMPLEX || question.type === QuestionType.ESSAY) ? (
+    !isStudyMode && (question.type === QuestionType.COMPLEX || question.type === QuestionType.ESSAY || question.type === QuestionType.FILL_IN_THE_BLANK) ? (
       <div className="mt-4">
         <button
             onClick={() => {
@@ -200,11 +200,13 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
           <div className="flex items-center gap-3">
             <span className={`text-xs font-bold uppercase tracking-wider hidden sm:block ${
                 question.type === QuestionType.COMPLEX ? 'text-purple-600' : 
-                question.type === QuestionType.ESSAY ? 'text-blue-600' : 'text-slate-400'
+                question.type === QuestionType.ESSAY ? 'text-blue-600' : 
+                question.type === QuestionType.FILL_IN_THE_BLANK ? 'text-orange-600' : 'text-slate-400'
             }`}>
                 {question.type === QuestionType.SINGLE_CHOICE ? '单项选择题' : 
                 question.type === QuestionType.TRUE_FALSE ? '判断题' : 
-                question.type === QuestionType.ESSAY ? '简答题' : '综合分析题'}
+                question.type === QuestionType.ESSAY ? '简答题' : 
+                question.type === QuestionType.FILL_IN_THE_BLANK ? '填空题' : '综合分析题'}
             </span>
             <button
                 onClick={(e) => {
@@ -238,8 +240,13 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
       {isExplanationVisible && (
         <div className="bg-slate-50 border-t border-slate-100 p-6 sm:p-8 animate-fade-in">
           <div className="flex items-center gap-2 mb-3 text-indigo-700 font-semibold">
-            {question.type === QuestionType.ESSAY ? <FileText className="w-5 h-5" /> : <HelpCircle className="w-5 h-5" />}
-            <span>{question.type === QuestionType.ESSAY ? '参考答案' : '答案与解析'}</span>
+            {question.type === QuestionType.ESSAY ? <FileText className="w-5 h-5" /> : 
+             question.type === QuestionType.FILL_IN_THE_BLANK ? <PenLine className="w-5 h-5" /> :
+             <HelpCircle className="w-5 h-5" />}
+            <span>{
+                question.type === QuestionType.ESSAY ? '参考答案' : 
+                question.type === QuestionType.FILL_IN_THE_BLANK ? '参考答案' : '答案与解析'
+            }</span>
           </div>
           <div className="prose prose-slate max-w-none text-slate-600">
             {question.correctAnswer && (

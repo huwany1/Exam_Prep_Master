@@ -2,6 +2,7 @@ export enum QuestionType {
   SINGLE_CHOICE = 'SINGLE_CHOICE',
   TRUE_FALSE = 'TRUE_FALSE',
   COMPLEX = 'COMPLEX', // For tables, code completion, etc.
+  FILL_IN_THE_BLANK = 'FILL_IN_THE_BLANK',
   ESSAY = 'ESSAY', // For short answer/essay questions
 }
 
